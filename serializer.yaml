@@ -1,0 +1,2 @@
+serializers:
+  - lib/models/conferences.dart

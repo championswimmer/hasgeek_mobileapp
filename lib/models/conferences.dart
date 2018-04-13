@@ -6,10 +6,15 @@ class Conference {
   String title;
   String id;
   String city;
-
+  DateTime startTime;
+  DateTime endTime;
 }
 
-@GenSerializer()
-class ConferenceJsonSerializer extends Serializer<Conference> with _$ConferenceJsonSerializer {
+@GenSerializer(fieldFormat: FieldFormat.snakeCase, fields: {
+  'startTime': const Property<DateTime>(processor: const DateTimeProcessor()),
+  'endTime': const Property<DateTime>(processor: const DateTimeProcessor()),
+})
+class ConferenceJsonSerializer extends Serializer<Conference>
+    with _$ConferenceJsonSerializer {
   Conference createModel() => new Conference();
 }

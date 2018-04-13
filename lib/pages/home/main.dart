@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:hasgeek_mobile/app_theme.dart';
+import 'package:hasgeek_mobile/pages/home/conferences/page.dart';
+import 'package:hasgeek_mobile/pages/home/events/page.dart';
 import 'package:hasgeek_mobile/pages/home/main_drawer.dart';
+import 'package:hasgeek_mobile/pages/home/talkfunnel/page.dart';
 
 enum PAGES {
   EVENTS, CONFERENCES, TALKFUNNEL
 }
-String getPageName(PAGES page) {
-  switch(page) {
-    case PAGES.EVENTS: return 'events';
-    case PAGES.CONFERENCES: return 'conferences';
-    case PAGES.TALKFUNNEL: return 'funnel';
-  }
-  return 'events';
-}
+
 class HomePage extends StatelessWidget {
   PAGES innerPage = PAGES.EVENTS;
+
+  static Widget getInnerPage(PAGES page) {
+    switch(page) {
+      case PAGES.EVENTS: return new EventsPage();
+      case PAGES.CONFERENCES: return ConferencesPage();
+      case PAGES.TALKFUNNEL: return TalkfunnelPage();
+    }
+    return new EventsPage();
+  }
 
   HomePage({this.innerPage});
 
@@ -26,11 +31,7 @@ class HomePage extends StatelessWidget {
         title: const Text('HasGeek'),
       ),
       drawer: new MainDrawer(),
-      body: new Container(
-        child: new Center(
-          child: new Text(getPageName(innerPage)),
-        ),
-      ),
+      body: getInnerPage(innerPage),
     );
   }
 }

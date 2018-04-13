@@ -259,3 +259,6 @@ hs_err_pid*
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+pubs/**/example*
+pubs/**/test*

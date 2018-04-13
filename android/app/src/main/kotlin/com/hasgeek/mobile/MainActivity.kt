@@ -1,4 +1,4 @@
-package `in`.championswimmer.jsonplaceholder
+package com.hasgeek.mobile
 
 import android.os.Bundle
 

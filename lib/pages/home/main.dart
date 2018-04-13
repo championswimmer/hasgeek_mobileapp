@@ -1,17 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:jsonplaceholder/pages/home/main_drawer.dart';
+import 'package:hasgeek_mobile/app_theme.dart';
+import 'package:hasgeek_mobile/pages/home/main_drawer.dart';
 
+enum PAGES {
+  EVENTS, CONFERENCES, TALKFUNNEL
+}
+String getPageName(PAGES page) {
+  switch(page) {
+    case PAGES.EVENTS: return 'events';
+    case PAGES.CONFERENCES: return 'conferences';
+    case PAGES.TALKFUNNEL: return 'funnel';
+  }
+  return 'events';
+}
 class HomePage extends StatelessWidget {
-  static const routeName = '/home';
+  PAGES innerPage = PAGES.EVENTS;
+
+  HomePage({this.innerPage});
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        backgroundColor: Colors.deepPurple,
-        title: new Text('HasGeek'),
+        backgroundColor: appThemeData.primaryColor,
+        title: const Text('HasGeek'),
       ),
       drawer: new MainDrawer(),
+      body: new Container(
+        child: new Center(
+          child: new Text(getPageName(innerPage)),
+        ),
+      ),
     );
   }
 }
